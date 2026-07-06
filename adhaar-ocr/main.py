@@ -7,7 +7,7 @@ import base64
 
 app = Flask(__name__)
 # Initialize EasyOCR globally
-reader = easyocr.Reader(['en', 'hi'], gpu=False)
+reader = easyocr.Reader(['en'], gpu=False)
 
 def extract(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)

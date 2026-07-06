@@ -92,6 +92,8 @@ services:
       context: ./adhaar-ocr
     container_name: adhaar-ocr
     restart: unless-stopped
+    volumes:
+      - ./adhaar-ocr/main.py:/app/main.py
     # No need to expose ports to the public; n8n can talk to it internally via http://adhaar-ocr:5000/ocr
     networks:
       - evolution-net
