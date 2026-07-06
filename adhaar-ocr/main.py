@@ -38,11 +38,12 @@ def extract(img):
         addr_texts = []
         for i in range(4, aadhaar_label_idx):
             text = results[i][1].strip()
-            if not text.isascii():
+            normalized = text.translate(str.maketrans('०१२३४५६७८९', '0123456789'))
+            if not normalized.isascii():
                 continue
-            if re.search(r'[A-Z]{2}\d{6,}', text):
+            if re.search(r'[A-Z]{2}\d{6,}', normalized):
                 continue
-            addr_texts.append(text)
+            addr_texts.append(normalized)
         address = ", ".join(addr_texts) if addr_texts else "Not Found"
 
     aadhaar_number = aadhaar_num.group(0).replace(' ', '') if aadhaar_num else None
